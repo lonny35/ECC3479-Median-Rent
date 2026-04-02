@@ -2,23 +2,36 @@ import pandas as pd
 
 def clean_schools_data():
 
-    df = pd.read_excel("data/raw/schools_by_lga.xlsx")
+    # Load sheet with correct header row (row 10)
+    df = pd.read_excel(
+        "data/raw/schools_by_lga.xlsx",
+        sheet_name="LGA Data",
+        engine="openpyxl",
+        header=10,
+        dtype=str
+    )
 
-    df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
+    # Rename columns explicitly based on detected names
+    df = df.rename(columns={
+        "Row Labels": "lga_name",
+        "Sum of No Of Schools.2": "independent_schools",
+        "Unnamed: 8": "total_schools"
+    })
 
-    possible_lga_cols = [c for c in df.columns if "lga" in c]
-    df = df.rename(columns={possible_lga_cols[0]: "lga_name"})
+    # Keep only the required columns
+    df = df[["lga_name", "independent_schools", "total_schools"]]
 
-    possible_year_cols = [c for c in df.columns if "year" in c]
-    df = df.rename(columns={possible_year_cols[0]: "year"})
+    # Clean numeric columns
+    df["independent_schools"] = df["independent_schools"].replace("-", "0").astype(float)
+    df["total_schools"] = df["total_schools"].replace("-", "0").astype(float)
 
-    possible_school_cols = [c for c in df.columns if "school" in c]
-    df = df.rename(columns={possible_school_cols[0]: "num_schools"})
+    # Drop totals or blank rows
+    df = df[df["lga_name"].notna()]
+    df = df[df["lga_name"].str.lower() != "total"]
 
-    df = df[["lga_name", "year", "num_schools"]]
-    df = df.dropna()
-
+    # Save cleaned file
     df.to_csv("data/clean/schools_clean.csv", index=False)
+
     print("✓ Clean schools dataset saved to data/clean/schools_clean.csv")
 
 
