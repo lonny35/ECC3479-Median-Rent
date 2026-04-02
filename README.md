@@ -19,3 +19,6 @@ Does proximity to the Melbourne Central Business District increase median rental
 
    ```bash
    pip install -r requirements.txtECC3479-Median-Rent
+
+   ## Transparency / AI Use
+Some parts of this project (e.g., code structure, debugging assistance, and workflow guidance) were supported by Microsoft Copilot. All analysis, interpretation, and final decisions were made by the author.
