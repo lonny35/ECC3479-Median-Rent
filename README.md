@@ -60,35 +60,41 @@ Confirm the following files exist in data/raw/:
 If any dataset cannot be shared, instructions for obtaining it should be documented in data/raw/README.md or docs/data_access.md
 
 Script Execution Order
-Run the following scripts in this order (filenames here should match your actual code/ scripts):
+Run the following scripts in this order to reproduce the full workflow:
 
 1. Clean individual datasets
-Example (adjust to your actual script names):
-python code/clean_median_rent.py
-python code/clean_schools.py
-python code/clean_health.py
-python code/clean_crime.py
-python code/clean_distance.py
+python code/clean_rent_data.py
+python code/clean_schools_data.py
+python code/clean_health_data.py
+python code/clean_crime_data.py
+python code/clean_distance_data.py
 
-These scripts should read from data/raw/*.xlsx and write cleaned CSVs such as:
-- data/clean/median_rent_clean.csv
-- data/clean/schools_clean.csv
-- data/clean/health_clean.csv
-- data/clean/crime_clean.csv
-- data/clean/distance_clean.csv
-- 
+These scripts read from data/raw/*.xlsx and produce cleaned CSVs in data/clean/, including:
+- median_rent_clean.csv
+- schools_clean.csv
+- health_clean.csv
+- crime_clean.csv
+- distance_clean.csv
 
-2. Create final analysis panel
-python code/make_final_panel.py
 
-- This script should merge the cleaned datasets into something like:
+2. Merge all cleaned datasets into a final analysis panel
+python code/clean_and_merge_data.py
+
+This script produces:
 - data/clean/final_panel.csv
 
 3. Run the regression analysis
 python code/run_regression.py
 
 - This script should read final_panel.csv and write results to:
-- outputs/regression_results.csv (and/or a text summary)
+- outputs/regression_results.csv (and/or a printed regression summary)
+
+Manual Steps (Outside of Code)
+- Download raw Excel datasets from official Victorian Government sources
+- Place them unchanged into data/raw/
+- Ensure column names match those expected by the cleaning scripts
+- Review outputs in data/clean/ and outputs/ after running scripts
+
 
 Software Information
 This project uses Python with the following packages:
