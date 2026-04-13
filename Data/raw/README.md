@@ -94,10 +94,10 @@ All cleaning and transformation steps occur in the `code/` folder and produce ou
 
 ---
 
-## Links to Original Documentation (Optional but Recommended)
-*(Replace with actual URLs if available)*
+## Links to Original Documentation 
 
-- Victorian Rental Report: https://www.dffh.vic.gov.au  
-- Crime Statistics Agency Victoria: https://www.crimestatistics.vic.gov.au  
-- Victorian Department of Education: https://www.education.vic.gov.au  
-- Victorian Health Data: https://www.health.vic.gov.au  
+- Victorian Rental Report: https://discover.data.vic.gov.au/dataset/rental-report-quarterly-quarterly-median-rents-by-lga 
+- Crime Statistics Agency Victoria: https://files.crimestatistics.vic.gov.au/2026-03/Data_Tables_LGA_Criminal_Incidents_Year_Ending_December_2025.xlsx
+
+- Victorian Department of Education: https://discover.data.vic.gov.au/dataset/2011-local-government-area-profile 
+- Victorian Health Data: https://www.aihw.gov.au/reports/workforce/health-workforce
